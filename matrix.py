@@ -11,14 +11,14 @@ class Matrix:
                     random.uniform(-1, 1.001), 
                     3
                     )
-                for _ in range(self.length)
+                for _ in range(self.hight)
                 ]
-            for i in range(self.hight)
+            for i in range(self.length)
         ]
         
     def show(self):
-        for i in range(self.hight):
+        for i in range(self.length):
             print('[', end=' ')
-            for j in range(self.length):
+            for j in range(self.hight):
                 print(f'{self.values[i][j]}', end=' ')
             print(']')

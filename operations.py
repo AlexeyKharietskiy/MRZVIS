@@ -1,19 +1,29 @@
 from matrix import Matrix
-
+consistent_tacts = 0
 
 def sum(a, b):
+    global consistent_tacts
+    consistent_tacts += 1
     return a + b
 
 def mult(a, b):
+    global consistent_tacts
+    consistent_tacts += 1
     return a * b
 
 def diff(a, b):
+    global consistent_tacts
+    consistent_tacts += 1
     return a - b
 
 def conj(a, b):
+    global consistent_tacts
+    consistent_tacts += 1
     return min(a, b)
 
 def tnorm(a, b):
+    global consistent_tacts
+    consistent_tacts += 1
     return a * b
 
 def impl(a, b):
@@ -21,16 +31,25 @@ def impl(a, b):
 
 def reduction1(arr: list, k):
 #|~\
+    global consistent_tacts
     res = 1
     for i in range(k):
-        res *= arr[i]
+        res = mult(res, arr[i])
+    consistent_tacts -= 1   
     return res   
 
 def reduction2(arr: list, k):
 #\~|
+    global consistent_tacts
     res = 1
     for i in range(k):
-        res *= 1 - arr[i]
+        res = mult(
+            res,
+            diff(
+                1,
+                arr[i]
+            )
+        )
     return 1 - res 
 
 def get_f(
@@ -41,23 +60,24 @@ def get_f(
     b: Matrix, 
     e: Matrix
     ):
+    a_impl_b = impl(
+        a.values[i][k], 
+        b.values[k][j]
+        )
     res = (
         sum(
             mult(
                 mult(
-                    impl(
-                        a.values[i][k], 
-                        b.values[k][j]
-                        ),
+                    a_impl_b,
                     diff(
                         mult(
                             2,
-                            e.values[k][0],
+                            e.values[0][k],
                         ),
                         1
                     )
                 ),
-                e.values[k][0]
+                e.values[0][k]
             ),
             mult(
                 mult(
@@ -71,20 +91,17 @@ def get_f(
                             diff(
                                 mult(
                                     4,
-                                    impl(
-                                        a.values[i][k],
-                                        b.values[k][j]
-                                        )
+                                    a_impl_b
                                     ),
                                 2
                                 ),
-                            e.values[k][0]
+                            e.values[0][k]
                             )
                         )
                     ),
                 diff(
                     1,
-                    e.values[k][0]
+                    e.values[0][k]
                     )
                 )  
         )
@@ -169,3 +186,7 @@ def get_c_el(
         )
     )
     return round(res, 2)
+
+def get_consistent_tacts():
+    global consistent_tacts
+    return consistent_tacts
