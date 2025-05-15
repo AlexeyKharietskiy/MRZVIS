@@ -1,5 +1,7 @@
+import math
 from matrix import Matrix
-from operations import get_c_el
+from operations import get_c_el, get_consistent_tacts
+from tact_calculator import calculate_parallel_tacts
 
 
 if __name__ == "__main__":
@@ -36,3 +38,17 @@ if __name__ == "__main__":
     G.show()
     print(f'\nC:')
     C.show()
+    T1 = get_consistent_tacts()
+    Tn = calculate_parallel_tacts(p, q, m, n) if n > 1 else T1
+    Ky = T1 / Tn
+    e = Ky / n
+    r = p * q + p * m + q * m + 1 * m + p * q
+    L_avg = T1/ r
+    D = Tn / L_avg
+    print(f'\n\n{T1=}')
+    print(f'{Tn=}')
+    print(f'{Ky=}')
+    print(f'{e=}')
+    print(f'{r=}')
+    print(f'{L_avg=}')
+    print(f'{D=}\n\n')
