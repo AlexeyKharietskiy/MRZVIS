@@ -1,3 +1,14 @@
+"""Лабораторная работа 2 по дисциплине 'Модели решения задач в интеллектуальных системах'
+Реализация модели решения задач в интеллектуальных системах
+Выполнил: студент гр.221701  Харецкий А. Д.
+Вариант 3: (~) = /1\\; /~\\ = /2\\; x~>y = 1 + x * (y - 1)
+https://github.com/rastsislaux/bsuir/tree/main/semester-6/MRZvIS
+Модели решения задач в интеллектуальных системах.
+В 2 ч. Ч.1: Формальные модели обработки информации и параллельные модели решения задач:
+учеб.-метод. пособие/ В. П. Ивашенко. – Минск : БГУИР, 2020. – 79 с.
+15.05.2025
+"""
+
 from matrix import Matrix
 consistent_tacts = 0
 
@@ -53,9 +64,9 @@ def reduction2(arr: list, k):
     return 1 - res 
 
 def get_f(
-    i, 
-    j, 
-    k, 
+    i: int, 
+    j: int, 
+    k: int, 
     a: Matrix, 
     b: Matrix, 
     e: Matrix
@@ -106,6 +117,7 @@ def get_f(
                 )  
         )
     )
+    print(f'f = {res}')
     return res
     
 def get_d(  
@@ -123,6 +135,7 @@ def get_d(
         for _ in range(k)
         ]
     res = reduction2(tnorm_list, k)
+    print(f'd = {res}')
     return res
 
 def get_c_el(
@@ -185,8 +198,11 @@ def get_c_el(
             
         )
     )
+    print(f'c = {round(res, 2)}') 
     return round(res, 2)
 
 def get_consistent_tacts():
     global consistent_tacts
-    return consistent_tacts
+    a = consistent_tacts
+    consistent_tacts = 0
+    return a

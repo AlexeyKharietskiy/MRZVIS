@@ -1,7 +1,19 @@
-import math
+"""Лабораторная работа 2 по дисциплине 'Модели решения задач в интеллектуальных системах'
+Реализация модели решения задач в интеллектуальных системах
+Выполнил: студент гр.221701  Харецкий А. Д.
+Вариант 3: (~) = /1\\; /~\\ = /2\\; x~>y = 1 + x * (y - 1)
+https://github.com/rastsislaux/bsuir/tree/main/semester-6/MRZvIS
+Модели решения задач в интеллектуальных системах.
+В 2 ч. Ч.1: Формальные модели обработки информации и параллельные модели решения задач:
+учеб.-метод. пособие/ В. П. Ивашенко. – Минск : БГУИР, 2020. – 79 с.
+15.05.2025
+"""
+
 from matrix import Matrix
 from operations import get_c_el, get_consistent_tacts
 from tact_calculator import calculate_parallel_tacts
+
+
 
 
 if __name__ == "__main__":
@@ -9,7 +21,7 @@ if __name__ == "__main__":
     p = int(input("p = "))
     q = int(input("q = "))
     n = int(input("n = "))
-    
+    global T1, Tn, Ky, r, e, L_avg, D
     A = Matrix(p, m)
     B = Matrix(m, q)
     E = Matrix(1, m)
