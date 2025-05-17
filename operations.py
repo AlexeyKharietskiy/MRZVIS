@@ -117,7 +117,6 @@ def get_f(
                 )  
         )
     )
-    print(f'f = {res}')
     return res
     
 def get_d(  
@@ -135,7 +134,6 @@ def get_d(
         for _ in range(k)
         ]
     res = reduction2(tnorm_list, k)
-    print(f'd = {res}')
     return res
 
 def get_c_el(
@@ -198,7 +196,6 @@ def get_c_el(
             
         )
     )
-    print(f'c = {round(res, 2)}') 
     return round(res, 2)
 
 def get_consistent_tacts():
